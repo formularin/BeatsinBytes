@@ -25,8 +25,8 @@ class Kern:
         (if not provided will look in reference records. 
         If not in reference records will default to "unknown")
     """
-    def __init__(self):
-        pass
+    def __init__(self, file_path):
+        self.file_path = file_path
 
     def average_note_value(self):
         pass
@@ -38,7 +38,7 @@ class Kern:
         pass
 
     def key_signature(self):
-        pass
+        return analysisTools.find_key_signature(self.file_path)
 
     def most_used_note_value(self):
         pass
