@@ -12,6 +12,7 @@ class Kern:
         File must follow all kern syntax rules documented here:
         http://www.humdrum.org/guide/ch02/
         http://www.humdrum.org/guide/ch06/
+        http://www.humdrum.org/rep/kern/
     
     Attributes:
         file_path -- path to kern file in UTF-8 encoding. Extension can be '.krn' or '.txt'
