@@ -1,5 +1,7 @@
 # BeatsinBytes
-BeatsinBytes is a python package containing a python translation of all of the scripts written for the study: Beats in Bytes - A Statistical Analysis of Melodic Properties
+BeatsinBytes is a python package containing a python translation of all of the scripts written for the study:
+
+Beats in Bytes - A Statistical Analysis of Melodic Properties
 
 Our website contains access to our tools along with information about our project at:
-[https://beatsinbytes.com]
+<https://beatsinbytes.com>
