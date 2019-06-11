@@ -12,7 +12,7 @@ def prepare_kern_file(kern_file):
                 content_columns (list): columns containing kern information
     """
     with open(kern_file, 'r') as f:
-        song = f.read()
+        song = f.read().strip()
 
     lines = song.split('\n')
 
@@ -24,10 +24,8 @@ def prepare_kern_file(kern_file):
     
     content_lines = [line.split('\t') for line in string_content_lines]
 
-    all_content_columns = [
-        [line[i] for line in content_lines]
-        for i in range(len(content_lines[0]))
-        ]
+    all_content_columns = [[line[i] for line in content_lines]
+                            for i in range(len(content_lines[0]))]
 
     content_columns = [column for column in all_content_columns if column[0] == '**kern']
 

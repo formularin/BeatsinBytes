@@ -1,5 +1,4 @@
-import analysisTools
-import errors
+from pyBiB import analysisTools, errors
 
 
 class Kern:
@@ -59,12 +58,17 @@ class Kern:
                 if '!!!COM:' in line:
                     composer_line = line
 
-            self.composer = composer_line.split(':')[1].strip()
+            # no stated composer in kern file
+            if composer_line == '':
+                self.composer = 'unknown'
+            else:
+                composer_raw = composer_line.split(':')[1].strip()
+                if ',' in composer_raw:
+                    composer_list = [name.strip() for name in composer_raw.split(',')]
+                    self.composer = '{} {}'.format(composer_list[1], composer_list[0])
 
-        # no stated composer in kern file
-        if self.composer == '':
-            self.composer = 'unknown'
-        
+                else:
+                    self.composer = composer_raw
 
 
     def average_note_value(self):

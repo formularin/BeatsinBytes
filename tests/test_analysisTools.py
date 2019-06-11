@@ -1,5 +1,5 @@
 import unittest
-import pyBiB.analysisTools
+from pyBiB import analysisTools
 
 
 class TestAnalysisTools(unittest.TestCase):
