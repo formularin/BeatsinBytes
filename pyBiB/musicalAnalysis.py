@@ -1,3 +1,9 @@
+import os
+import sys
+
+u = os.getcwd().split("/")[2]
+sys.path.append(f'/Users/{u}/BeatsinBytes')
+
 from pyBiB import analysisTools, errors
 
 
@@ -41,11 +47,13 @@ class Kern:
                 if '!!!OTL:' in line:
                     title_line = line
 
-            self.title = title_line.split(':')[1].strip()
+                # no stated title in kern file
+                if title_line == '':
+                    self.title = self.file_path.split('/')[-1].split('.')[0]
+                else:
+                    self.title = title_line.split(':')[1].strip()
         
-        # no stated title in kern file
-        if self.title == '':
-            self.title = self.file_path.split('/')[-1].split('.')[0]
+        
 
         # composer was specified in initialization
         if composer != None:

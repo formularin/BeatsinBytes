@@ -16,13 +16,37 @@ def prepare_kern_file(kern_file):
 
     lines = song.split('\n')
 
-    reference_records = [line for line in lines
-                         if line[:2] == '!!' and ':' in line]
+    rr_first_chunk_end = 0
+    line = lines[rr_first_chunk_end]
+    while '**' not in line and '!!' in line and ':' in line:
+        rr_first_chunk_end += 1
+        line = lines[rr_first_chunk_end]
+
+    rr_second_chunk_begin = rr_first_chunk_end
+    line = lines[rr_second_chunk_begin]
+    while '*-' not in line:
+        rr_second_chunk_begin += 1
+        line = lines[rr_second_chunk_begin]
+    
+    rr_second_chunk_begin += 1
+
+    reference_records = lines[:rr_first_chunk_end] + lines[rr_second_chunk_begin:]
 
     string_content_lines = [line for line in lines 
                             if line not in reference_records]
     
     content_lines = [line.split('\t') for line in string_content_lines]
+
+    lengths = [len(line) for line in content_lines]
+
+    r = []
+    for l, line in zip(lengths, content_lines):
+        if l < lengths[0]:
+            r.append(content_lines.index(line))
+
+    removables = [content_lines[i] for i in r]
+    for removable in removables:
+        content_lines.remove(removable)
 
     all_content_columns = [[line[i] for line in content_lines]
                             for i in range(len(content_lines[0]))]

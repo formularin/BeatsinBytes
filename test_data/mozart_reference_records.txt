@@ -1,0 +1,21 @@
+!!!CDT: 1756/1/27/-1791/12/5/
+!!!OMD: Adagio
+!!!OMV: Mvmt. 1
+!!!SCT1: K<sup>1</sup> 80
+!!!SCA: Chronologisch-thematisches Verzeichnis s�mtlicher Tonwerke Wolfgang Amade Mozarts (L. von K�chel; 1862, 2/1905, 3/1937, 1947)
+!!!SCT2: K<sup>6</sup> 73f
+!!!YOR: Breitkopf & H�rtel Edition
+!!!ENC: Edmund Correia, Jr.
+!!!OCY: �sterreich
+!!!RWG: Appoggiaturas of spine 'Violino I' need manual editing in measures: 2, 16, 25, 27, 27, 27, 35, 35, 38, 38, 44, 55, 64, 66, 66, 66
+!!!RWG: Appoggiaturas of spine 'Violino II' need manual editing in measures: 25, 26, 26, 26, 37, 37, 44, 64, 65, 65, 65
+!!!RWG: Key is interpreted using the Humdrum key tool.
+!!!AFT: stage2
+!!!END: 1993/08/16
+!!!KEY: 2304854044
+!!!EMD: Converted from MuseData to Humdrum Dec 16, 2000, by Andreas Kornstaedt using muse2kern.
+!!!EMD: Manual editing by Craig Sapp, Nov 2001
+!!!YEC: Copyright (c) 1994, 2000 Center for Computer Assisted Research in the Humanities
+!!!YEM: Rights to all derivative editions reserved.
+!!!YEM: Refer to licensing agreement for further details.
+!!!YEN: United States of America

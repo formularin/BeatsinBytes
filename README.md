@@ -1,5 +1,5 @@
 # BeatsinBytes
-This is a placeholder repository for when we are able to relocate to BeatsinBytes main account
+This is a placeholder repository until when we are able to relocate to BeatsinBytes main account
 
 pyBiB is a python package containing a python translation of all of the scripts written for the research project: Beats in Bytes - A Statistical Analysis of Melodic Properties
 
