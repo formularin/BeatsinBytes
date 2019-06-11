@@ -1,7 +1,7 @@
 # BeatsinBytes
-BeatsinBytes is a python package containing a python translation of all of the scripts written for the study:
+This is a placeholder repository for when we are able to relocate to BeatsinBytes main account
 
-Beats in Bytes - A Statistical Analysis of Melodic Properties
+pyBiB is a python package containing a python translation of all of the scripts written for the research project: Beats in Bytes - A Statistical Analysis of Melodic Properties
 
 Our website contains access to our tools along with information about our project at:
 <https://beatsinbytes.com>
