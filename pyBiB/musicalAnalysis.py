@@ -4,7 +4,7 @@ import sys
 u = os.getcwd().split("/")[2]
 sys.path.append(f'/Users/{u}/BeatsinBytes')
 
-from pyBiB import analysisTools, errors
+from pyBiB import analysisTools
 
 
 class Kern:

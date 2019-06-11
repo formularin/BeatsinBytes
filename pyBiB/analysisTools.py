@@ -1,3 +1,23 @@
+import os
+import sys
+
+u = os.getcwd().split("/")[2]
+sys.path.append(f'/Users/{u}/BeatsinBytes')
+
+from pyBiB import errors
+import string
+
+
+def check_equal(iterator):
+    """Checks if all elements in list are equal"""
+    iterator = iter(iterator)
+    try:
+        first = next(iterator)
+    except StopIteration:
+        return True
+    return all(first == rest for rest in iterator)
+
+
 def prepare_kern_file(kern_file):
     """Outputs often useful lists from kern file
     
@@ -53,6 +73,9 @@ def prepare_kern_file(kern_file):
 
     content_columns = [column for column in all_content_columns if column[0] == '**kern']
 
+    content_lines = [[column[i] for column in content_columns]
+                     for i in range(len(content_columns[0]))]
+
     return [reference_records, content_lines, content_columns]
 
 
@@ -78,6 +101,7 @@ def find_key_signature(kern_file):
                 if there no key signature for a track
                 (ex. percussion instrument), then track list is empty
     """
+
     def key_signature_from_kern(kern):
         
         key_signature = ''
@@ -128,19 +152,57 @@ def find_key_signature(kern_file):
             key_signature = 'Cb Major'
 
         return key_signature
-    
-    content_lines = '\t'.join(prepare_kern_file(kern_file)[1])
-    key_signature_lines = [line for line in content_lines if '*k[' in line]
 
-    number_of_tracks_per_key_signature_line = [len(line.split('\t'))
-                                               for line in key_signature_lines]
-    tracks = [[] for i in
-              range(number_of_tracks_per_key_signature_line)]
+    content_lines = ['\t'.join(line) for line in prepare_kern_file(kern_file)[1]]
+    declarations = [line for line in content_lines 
+                if '*' in line and ':' == line[-1]]
 
-    for line in key_signature_lines:
-        tracks_with_keysig = [track for track in line.split('\t') if '*k[' in line]
-        for i, key_sig in enumerate(tracks_with_keysig):
-            tracks[i].append(key_signature_from_kern(key_sig))
+    def tracks_from_keysigs(keysigs):
+        line_lengths = [len(i) for i in keysigs]
+
+        tracks = [[line[i] for line in keysigs]
+                  for i in range(len(
+                      keysigs[line_lengths.index(max(line_lengths))]
+                      ))]
+
+        return tracks
+
+    if declarations != []:
+        keysigs = [d.split('\t') for d in declarations]
         
-    return tracks
-    
+        # list containing raw kern in format of output
+        tracks = tracks_from_keysigs(keysigs)
+
+        output = []
+        for track in tracks:
+            siglist = []
+            for sig in track:
+                tonic = [i for i in sig
+                         if i in string.ascii_letters][0]
+                major_or_minor = 'Major'
+                if tonic in string.ascii_lowercase:
+                    major_or_minor = 'Minor'
+                key_signature = '{} {}'.format(tonic.upper(), major_or_minor)
+                siglist.append(key_signature)
+
+            output.append(siglist)
+
+        return output
+
+    else:
+        
+        keysig_lines = [line for line in content_lines
+                        if '*k[' in line]
+
+        if keysig_lines == []:
+            raise errors.NoKeySignatureError(kern_file)
+
+        keysigs = [line.split('\t') for line in keysig_lines]
+
+        # list containing final output
+        tracks = tracks_from_keysigs(keysigs)
+
+        output = [[key_signature_from_kern(i) for i in track] for track in tracks]
+
+        return output
+        
